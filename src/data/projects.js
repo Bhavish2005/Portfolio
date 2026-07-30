@@ -1,3 +1,67 @@
+// Nexus Assets
+import nexusAppScreen0 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-29-29.png';
+import nexusAppScreen1 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-31-36.png';
+import nexusAppScreen2 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-32-18.png';
+import nexusAppScreen3 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-33-26.png';
+import nexusAppScreen4 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-33-36.png';
+import nexusAppScreen5 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-34-11.png';
+import nexusAppScreen6 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-34-23.png';
+import nexusAppScreen7 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-34-55.png';
+import nexusAppScreen8 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-35-17.png';
+import nexusAppScreen9 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-35-25.png';
+import nexusAppScreen10 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-36-37.png';
+import nexusAppScreen11 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-36-42.png';
+import nexusAppScreen12 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-36-57.png';
+import nexusAppScreen13 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-37-19.png';
+import nexusAppScreen14 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-37-32.png';
+import nexusAppScreen15 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-37-44.png';
+import nexusAppScreen16 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-37-56.png';
+import nexusAppScreen17 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-38-58.png';
+import nexusAppScreen18 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-39-10.png';
+import nexusAppScreen19 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-39-40.png';
+import nexusAppScreen20 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-40-05.png';
+import nexusAppScreen21 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-42-06.png';
+import nexusAppScreen22 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-42-22.png';
+import nexusAppScreen23 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-42-31.png';
+import nexusAppScreen24 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-42-50.png';
+import nexusAppScreen25 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-43-03.png';
+import nexusAppScreen26 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-43-12.png';
+import nexusAppScreen27 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-43-19.png';
+import nexusAppScreen28 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-43-34.png';
+import nexusAppScreen29 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-43-54.png';
+import nexusAppScreen30 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-44-03.png';
+import nexusAppScreen31 from '../assets/Nexus Intelligence/Screenshot From 2026-05-01 21-44-12.png';
+import nexusCover from '../assets/Nexus Intelligence/Nexus Intelligence(3).png';
+import nexusSecLayer from '../assets/Nexus Intelligence/Secutiry_layer.png';
+
+// Cuda Assets
+import cudaCover from '../assets/Cuda/memory_throughput_3d(1).png';
+import cudaVideo from '../assets/Cuda/Screencast From 2026-07-30 23-38-11.mp4';
+import cudaPdf from '../assets/Cuda/UCS645_Report.pdf';
+import cudaImg1 from '../assets/Cuda/cpu_vs_gpu_time_2d(1).png';
+import cudaImg2 from '../assets/Cuda/fps_scaling_2d(1).png';
+
+// FinanceVUE Assets
+import finCover from '../assets/FinanceVue/Screenshot 2026-07-30 182926.png';
+import fin1 from '../assets/FinanceVue/Screenshot 2026-07-30 182936.png';
+import fin2 from '../assets/FinanceVue/Screenshot 2026-07-30 182945.png';
+import fin3 from '../assets/FinanceVue/Screenshot 2026-07-30 182953.png';
+import fin4 from '../assets/FinanceVue/Screenshot 2026-07-30 183003.png';
+import fin5 from '../assets/FinanceVue/Screenshot 2026-07-30 183011.png';
+import fin6 from '../assets/FinanceVue/Screenshot 2026-07-30 183016.png';
+import fin7 from '../assets/FinanceVue/Screenshot 2026-07-30 183024.png';
+import fin8 from '../assets/FinanceVue/Screenshot 2026-07-30 183031.png';
+import fin9 from '../assets/FinanceVue/Screenshot 2026-07-30 183046.png';
+import fin10 from '../assets/FinanceVue/Screenshot 2026-07-30 183057.png';
+
+// FixMate Assets
+import fixCover from '../assets/fixmate/ide1.png';
+import fix1 from '../assets/fixmate/dashboard.png';
+import fix2 from '../assets/fixmate/login.png';
+import fix3 from '../assets/fixmate/signup.png';
+import fix4 from '../assets/fixmate/Screenshot 2026-07-30 182456.png';
+
+
 export const projectsData = [
   {
     id: 1,
@@ -22,11 +86,41 @@ export const projectsData = [
       'Designed a Multi-Agent SQL system with specialized planner, coder, and validator agents',
       'Implemented a secure read-only database sandbox with a complete query audit trail'
     ],
-    coverImage: '/assets/project1-cover.png',
-    gallery: [
-      '/assets/project1-gallery1.png',
-      '/assets/project1-gallery2.png',
-      '/assets/project1-gallery3.png'
+    coverImage: nexusCover,
+    media: [
+      { type: 'image', src: nexusSecLayer, title: 'Security Layer Architecture' },
+      { type: 'image', src: nexusAppScreen0, title: 'App Screenshot 1' },
+      { type: 'image', src: nexusAppScreen1, title: 'App Screenshot 2' },
+      { type: 'image', src: nexusAppScreen2, title: 'App Screenshot 3' },
+      { type: 'image', src: nexusAppScreen3, title: 'App Screenshot 4' },
+      { type: 'image', src: nexusAppScreen4, title: 'App Screenshot 5' },
+      { type: 'image', src: nexusAppScreen5, title: 'App Screenshot 6' },
+      { type: 'image', src: nexusAppScreen6, title: 'App Screenshot 7' },
+      { type: 'image', src: nexusAppScreen7, title: 'App Screenshot 8' },
+      { type: 'image', src: nexusAppScreen8, title: 'App Screenshot 9' },
+      { type: 'image', src: nexusAppScreen9, title: 'App Screenshot 10' },
+      { type: 'image', src: nexusAppScreen10, title: 'App Screenshot 11' },
+      { type: 'image', src: nexusAppScreen11, title: 'App Screenshot 12' },
+      { type: 'image', src: nexusAppScreen12, title: 'App Screenshot 13' },
+      { type: 'image', src: nexusAppScreen13, title: 'App Screenshot 14' },
+      { type: 'image', src: nexusAppScreen14, title: 'App Screenshot 15' },
+      { type: 'image', src: nexusAppScreen15, title: 'App Screenshot 16' },
+      { type: 'image', src: nexusAppScreen16, title: 'App Screenshot 17' },
+      { type: 'image', src: nexusAppScreen17, title: 'App Screenshot 18' },
+      { type: 'image', src: nexusAppScreen18, title: 'App Screenshot 19' },
+      { type: 'image', src: nexusAppScreen19, title: 'App Screenshot 20' },
+      { type: 'image', src: nexusAppScreen20, title: 'App Screenshot 21' },
+      { type: 'image', src: nexusAppScreen21, title: 'App Screenshot 22' },
+      { type: 'image', src: nexusAppScreen22, title: 'App Screenshot 23' },
+      { type: 'image', src: nexusAppScreen23, title: 'App Screenshot 24' },
+      { type: 'image', src: nexusAppScreen24, title: 'App Screenshot 25' },
+      { type: 'image', src: nexusAppScreen25, title: 'App Screenshot 26' },
+      { type: 'image', src: nexusAppScreen26, title: 'App Screenshot 27' },
+      { type: 'image', src: nexusAppScreen27, title: 'App Screenshot 28' },
+      { type: 'image', src: nexusAppScreen28, title: 'App Screenshot 29' },
+      { type: 'image', src: nexusAppScreen29, title: 'App Screenshot 30' },
+      { type: 'image', src: nexusAppScreen30, title: 'App Screenshot 31' },
+      { type: 'image', src: nexusAppScreen31, title: 'App Screenshot 32' }
     ]
   },
   {
@@ -52,10 +146,12 @@ export const projectsData = [
       'Optimized memory coalescence to eliminate GPU bottlenecks',
       'Built a highly performant rendering pipeline leveraging GLFW3 and GLEW'
     ],
-    coverImage: '/assets/project2-cover.png',
-    gallery: [
-      '/assets/project2-gallery1.png',
-      '/assets/project2-gallery2.png'
+    coverImage: cudaCover,
+    media: [
+      { type: 'video', src: cudaVideo, title: 'Real-Time Ray Tracer Demo' },
+      { type: 'document', src: cudaPdf, title: 'UCS645 Report.pdf', filename: 'CUDA_Raytracer_Report.pdf' },
+      { type: 'image', src: cudaImg1, title: 'CPU vs GPU Time (2D)' },
+      { type: 'image', src: cudaImg2, title: 'FPS Scaling (2D)' }
     ]
   },
   {
@@ -81,10 +177,18 @@ export const projectsData = [
       'Implemented high-performance dashboard analytics retrieval powered by Spring Data Redis',
       'Developed an automated monthly HTML email summary system using JavaMailSender'
     ],
-    coverImage: '/assets/project3-cover.png',
-    gallery: [
-      '/assets/project3-gallery1.png',
-      '/assets/project3-gallery2.png'
+    coverImage: finCover,
+    media: [
+      { type: 'image', src: fin1, title: 'App Screenshot 1' },
+      { type: 'image', src: fin2, title: 'App Screenshot 2' },
+      { type: 'image', src: fin3, title: 'App Screenshot 3' },
+      { type: 'image', src: fin4, title: 'App Screenshot 4' },
+      { type: 'image', src: fin5, title: 'App Screenshot 5' },
+      { type: 'image', src: fin6, title: 'App Screenshot 6' },
+      { type: 'image', src: fin7, title: 'App Screenshot 7' },
+      { type: 'image', src: fin8, title: 'App Screenshot 8' },
+      { type: 'image', src: fin9, title: 'App Screenshot 9' },
+      { type: 'image', src: fin10, title: 'App Screenshot 10' }
     ]
   },
   {
@@ -110,10 +214,12 @@ export const projectsData = [
       'Built a personal dashboard to track coding activity and visualize success/error rates',
       'Implemented full user authentication with secure JWTs and Firebase Google OAuth 2.0'
     ],
-    coverImage: '/assets/project4-cover.png',
-    gallery: [
-      '/assets/project4-gallery1.png',
-      '/assets/project4-gallery2.png'
+    coverImage: fixCover,
+    media: [
+      { type: 'image', src: fix1, title: 'User Dashboard' },
+      { type: 'image', src: fix2, title: 'Login Screen' },
+      { type: 'image', src: fix3, title: 'Signup Screen' },
+      { type: 'image', src: fix4, title: 'Platform Screenshot' }
     ]
   }
 ];

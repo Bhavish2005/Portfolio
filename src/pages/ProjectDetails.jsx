@@ -5,7 +5,7 @@ import { FiGithub } from 'react-icons/fi';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { projectsData } from '../data/projects';
-import SpiralImageStack from '../components/SpiralImageStack';
+import ImageCarousel from '../components/ImageCarousel';
 
 export default function ProjectDetails() {
   const { id } = useParams();
@@ -15,7 +15,10 @@ export default function ProjectDetails() {
   const [loadingReadme, setLoadingReadme] = useState(true);
 
   useEffect(() => {
-    window.scrollTo(0, 0); 
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
+    setTimeout(() => window.scrollTo(0, 0), 10);
     
     if (project && project.githubLink) {
       setLoadingReadme(true);
@@ -70,16 +73,7 @@ export default function ProjectDetails() {
           )}
         </div>
 
-        {/* Spiral Stacked Preview Cards (Unified Main & Sub-Cards) */}
-        <div style={{ width: '100%', marginBottom: '4rem', padding: '2rem 0', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ width: '100%', maxWidth: '600px' }}>
-            <SpiralImageStack 
-              coverImage={project.coverImage} 
-              gallery={project.gallery} 
-              title={project.title} 
-            />
-          </div>
-        </div>
+        {/* Spiral Stacked Preview Cards Removed per user request */}
 
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '5rem', flexWrap: 'wrap' }}>
           {project.tools.map(tool => (
@@ -157,6 +151,49 @@ export default function ProjectDetails() {
           </ul>
         </div>
       </div>
+
+      {/* Media Showcase */}
+      {project.media && project.media.length > 0 && (
+        <div style={{ maxWidth: '1000px', margin: '6rem auto 0 auto' }}>
+          <h3 style={{ fontSize: '2.5rem', color: 'var(--text-primary)', marginBottom: '2rem', letterSpacing: '-0.02em' }}>
+            Media Showcase
+          </h3>
+          
+          {project.media.some(m => m.type === 'image') && (
+            <div style={{ marginBottom: '4rem' }}>
+              <ImageCarousel images={project.media.filter(m => m.type === 'image')} />
+            </div>
+          )}
+
+          {project.media.some(m => m.type !== 'image') && (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
+              {project.media.filter(m => m.type !== 'image').map((item, idx) => {
+                if (item.type === 'video') {
+                  return (
+                    <div key={idx} style={{ gridColumn: '1 / -1', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', border: '1px solid var(--border-light)', background: '#000', marginBottom: '2rem' }}>
+                      <video src={item.src} autoPlay muted loop playsInline style={{ width: '100%', display: 'block', pointerEvents: 'none' }} />
+                      {item.title && <div style={{ padding: '1.5rem', fontWeight: 600, fontSize: '1.2rem', color: 'var(--text-primary)', background: 'var(--surface)', textAlign: 'center', borderTop: '1px solid var(--border-light)' }}>{item.title}</div>}
+                    </div>
+                  );
+                } else if (item.type === 'document') {
+                  return (
+                    <div key={idx} style={{ gridColumn: '1 / -1', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-light)', background: 'var(--surface)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
+                      <div>
+                        <h4 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>{item.title}</h4>
+                        <p style={{ color: 'var(--text-muted)' }}>{item.filename}</p>
+                      </div>
+                      <a href={item.src} download={item.filename} style={{ padding: '0.8rem 1.5rem', background: 'var(--text-primary)', color: '#fff', borderRadius: '50px', textDecoration: 'none', fontWeight: 600, transition: 'transform 0.2s ease', display: 'inline-block' }} onMouseEnter={e=>e.target.style.transform='scale(1.05)'} onMouseLeave={e=>e.target.style.transform='scale(1)'}>
+                        Download File
+                      </a>
+                    </div>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Full GitHub README Integration */}
       {project.githubLink && (

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, Star, Image as ImageIcon, ExternalLink, Code2, AlertTriangle, Layers } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Star, ExternalLink, Code2, AlertTriangle, Layers } from 'lucide-react';
 import { FiGithub } from 'react-icons/fi';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { projectsData } from '../data/projects';
+import SpiralImageStack from '../components/SpiralImageStack';
 
 export default function ProjectDetails() {
   const { id } = useParams();
@@ -67,6 +68,17 @@ export default function ProjectDetails() {
               <FiGithub size={20} /> GitHub Source
             </a>
           )}
+        </div>
+
+        {/* Spiral Stacked Preview Cards (Unified Main & Sub-Cards) */}
+        <div style={{ width: '100%', marginBottom: '4rem', padding: '2rem 0', display: 'flex', justifyContent: 'center' }}>
+          <div style={{ width: '100%', maxWidth: '600px' }}>
+            <SpiralImageStack 
+              coverImage={project.coverImage} 
+              gallery={project.gallery} 
+              title={project.title} 
+            />
+          </div>
         </div>
 
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '5rem', flexWrap: 'wrap' }}>
@@ -165,39 +177,6 @@ export default function ProjectDetails() {
               </ReactMarkdown>
             </div>
           )}
-        </div>
-      )}
-
-      {/* Massive Image Gallery Section */}
-      {project.gallery && project.gallery.length > 0 && (
-        <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '6rem' }}>
-          <h3 style={{ fontSize: '2.5rem', color: 'var(--text-primary)', marginBottom: '3rem', textAlign: 'center', letterSpacing: '-0.02em' }}>App Preview & Architecture</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem', alignItems: 'center' }}>
-            {project.gallery.map((imgSrc, i) => (
-              <div key={i} style={{ width: '100%', maxWidth: '1000px', position: 'relative', borderRadius: '1rem', overflow: 'hidden', backgroundColor: 'rgba(15, 23, 42, 0.03)', border: '1px solid var(--border-light)' }}>
-                <img 
-                  src={imgSrc} 
-                  alt={`${project.title} Preview ${i + 1}`} 
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                  style={{ width: '100%', height: 'auto', display: 'block', minHeight: '300px', objectFit: 'contain' }}
-                />
-                <div style={{ 
-                  display: 'none', 
-                  position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, 
-                  alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem',
-                  color: 'var(--text-muted)'
-                }}>
-                  <ImageIcon size={64} opacity={0.5} />
-                  <span style={{ fontSize: '1.2rem', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase' }}>
-                    Gallery Image {i + 1} Placeholder
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       )}
       

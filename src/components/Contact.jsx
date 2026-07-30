@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FiGithub, FiLinkedin, FiMail, FiSend } from 'react-icons/fi';
+import { SiLeetcode } from 'react-icons/si';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -173,9 +174,12 @@ const Contact = () => {
         </div>
         
         {/* Contact Links */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginTop: '4rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginTop: '4rem', flexWrap: 'wrap' }}>
           <a href="https://github.com/Bhavish2005" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500, fontSize: '1.1rem', transition: 'color 0.2s' }} onMouseEnter={(e)=>e.target.style.color='var(--text-primary)'} onMouseLeave={(e)=>e.target.style.color='var(--text-secondary)'}>
             <FiGithub size={20} /> GitHub
+          </a>
+          <a href="https://leetcode.com/u/Bhavish_2005/" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500, fontSize: '1.1rem', transition: 'color 0.2s' }} onMouseEnter={(e)=>e.target.style.color='#000000'} onMouseLeave={(e)=>e.target.style.color='var(--text-secondary)'}>
+            <SiLeetcode size={20} color="#ffa116" /> LeetCode
           </a>
           <a href="https://linkedin.com/in/bhavish-pushkarna-52715429a" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500, fontSize: '1.1rem', transition: 'color 0.2s' }} onMouseEnter={(e)=>e.target.style.color='var(--text-primary)'} onMouseLeave={(e)=>e.target.style.color='var(--text-secondary)'}>
             <FiLinkedin size={20} /> LinkedIn

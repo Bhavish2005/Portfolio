@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Navbar from './components/Navbar';
+import InteractiveBackground from './components/InteractiveBackground';
 import Home from './pages/Home';
 import ProjectDetails from './pages/ProjectDetails';
 
@@ -44,6 +45,9 @@ function App() {
   return (
     <BrowserRouter>
       <div className="portfolio-app">
+        {/* Minimal Interactive Background Elements & 3D Cursor Highlight (z-index: -3) */}
+        <InteractiveBackground />
+
         {/* Global Smart Navbar */}
         <Navbar />
 

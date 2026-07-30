@@ -147,7 +147,32 @@ const StatsDashboard = () => {
           {/* LeetCode Overview */}
           <div className="glass-panel" style={{ padding: '2.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1rem' }}>LeetCode (Knight)</div>
+                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                   <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>LeetCode (Knight)</div>
+                   <a 
+                     href="https://leetcode.com/u/Bhavish_2005/" 
+                     target="_blank" 
+                     rel="noreferrer"
+                     style={{
+                       fontSize: '0.8rem',
+                       fontWeight: 600,
+                       color: '#ffa116',
+                       textDecoration: 'none',
+                       padding: '0.25rem 0.65rem',
+                       borderRadius: '20px',
+                       border: '1px solid rgba(255, 161, 22, 0.3)',
+                       backgroundColor: 'rgba(255, 161, 22, 0.08)',
+                       transition: 'all 0.2s ease',
+                       display: 'inline-flex',
+                       alignItems: 'center',
+                       gap: '0.25rem'
+                     }}
+                     onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffa116'; e.currentTarget.style.color = '#fff'; }}
+                     onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255, 161, 22, 0.08)'; e.currentTarget.style.color = '#ffa116'; }}
+                   >
+                     Profile ↗
+                   </a>
+                 </div>
                 <div style={{ fontSize: '3.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', lineHeight: 1 }}>{lcStats.solved > 0 ? lcStats.solved : "1000+"}</div>
                 <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.5rem', fontWeight: 500, marginBottom: '1.5rem' }}>PROBLEMS SOLVED</div>
                 

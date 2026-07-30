@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Image as ImageIcon } from 'lucide-react';
 import { projectsData } from '../data/projects';
 
+import SpiralImageStack from './SpiralImageStack';
+
 const Projects = () => {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
@@ -69,36 +71,21 @@ const Projects = () => {
                 }}
               >
               
-              {/* Image Container */}
+              {/* Image Stack Container with Spiral Stacked Cards Effect */}
               <div className="project-image-container" style={{ 
                 flex: '1 1 45%',
-                backgroundColor: 'rgba(15, 23, 42, 0.03)',
+                background: 'transparent',
                 position: 'relative',
-                minHeight: '300px',
-                borderRight: index % 2 === 0 ? '1px solid var(--border-light)' : 'none',
-                borderLeft: index % 2 !== 0 ? '1px solid var(--border-light)' : 'none'
+                minHeight: '340px',
+                display: 'flex',
+                alignItems: 'center',
+                justify: 'center'
               }}>
-                <img 
-                  src={project.coverImage} 
-                  alt={project.title} 
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                <SpiralImageStack 
+                  coverImage={project.coverImage} 
+                  gallery={project.gallery} 
+                  title={project.title} 
                 />
-                {/* Fallback Placeholder if image fails to load (since user hasn't uploaded yet) */}
-                <div style={{ 
-                  display: 'none', 
-                  position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, 
-                  alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem',
-                  color: 'var(--text-muted)'
-                }}>
-                  <ImageIcon size={48} opacity={0.5} />
-                  <span style={{ fontSize: '0.9rem', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase' }}>
-                    Preview Image Space
-                  </span>
-                </div>
               </div>
 
               {/* Text Container */}
@@ -154,7 +141,7 @@ const Projects = () => {
                   onMouseEnter={(e) => e.target.style.opacity = '0.8'}
                   onMouseLeave={(e) => e.target.style.opacity = '1'}
                   >
-                    Read Story <ArrowUpRight size={16} />
+                    View More <ArrowUpRight size={16} />
                   </Link>
                 </div>
               </div>
@@ -169,10 +156,6 @@ const Projects = () => {
         @media (max-width: 900px) {
           .project-card-split {
             flex-direction: column !important;
-          }
-          .project-image-container {
-            border: none !important;
-            border-bottom: 1px solid var(--border-light) !important;
           }
           .project-text-container {
             padding: 2.5rem !important;

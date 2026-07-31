@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { Menu } from 'lucide-react';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -10,15 +11,27 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   
   const sections = ['About', 'Skills', 'Projects', 'Resumes', 'Contact'];
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (!mobile) setIsMobileMenuOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       if (location.pathname === '/') {
         if (window.scrollY < 250) {
           setIsVisible(false);
-          setActiveSection(''); // Clear active section in Hero
+          setActiveSection(''); 
         } else {
           setIsVisible(true);
         }
@@ -62,6 +75,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const handleScrollTo = (id) => {
+    setIsMobileMenuOpen(false);
     if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
@@ -73,14 +87,16 @@ const Navbar = () => {
   };
 
   return (
-    <nav style={{
+    <nav className="navbar-container" style={{
       position: 'fixed',
       top: '1.5rem',
-      left: '50%',
-      transform: `translate(-50%, ${isVisible ? '0' : '-150%'})`,
+      left: isMobile ? 'auto' : '50%',
+      right: isMobile ? '1.5rem' : 'auto',
+      width: isMobile ? 'fit-content' : 'auto',
+      transform: isMobile ? `translate(0, ${isVisible ? '0' : '-150%'})` : `translate(-50%, ${isVisible ? '0' : '-150%'})`,
       opacity: isVisible ? 1 : 0,
       pointerEvents: isVisible ? 'auto' : 'none',
-      transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease',
+      transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, left 0.4s ease',
       zIndex: 9999,
       background: 'rgba(255, 255, 255, 0.7)',
       backdropFilter: 'blur(12px)',
@@ -90,34 +106,76 @@ const Navbar = () => {
       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
       border: '1px solid rgba(0, 0, 0, 0.05)',
       display: 'flex',
-      gap: '2.5rem'
+      flexDirection: 'column',
+      gap: '0',
+      alignItems: 'center'
     }}>
-      {sections.map((item) => {
-        const sectionId = item.toLowerCase();
-        const isActive = activeSection === sectionId;
-        
-        return (
+      {/* Mobile Hamburger Header */}
+      {isMobile && !isMobileMenuOpen && (
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
           <button
-            key={item}
-            onClick={() => handleScrollTo(sectionId)}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             style={{
-              background: isActive ? 'var(--text-primary)' : 'none',
-              color: isActive ? '#fff' : 'var(--text-primary)',
+              background: 'none',
               border: 'none',
-              fontSize: '0.95rem',
-              fontWeight: 600,
+              color: 'var(--text-primary)',
               cursor: 'pointer',
-              padding: '0.4rem 1rem',
-              borderRadius: '20px',
-              transition: 'all 0.3s ease'
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '2rem',
+              height: '2rem',
+              padding: 0,
+              lineHeight: 0,
             }}
-            onMouseEnter={(e) => { if (!isActive) e.target.style.color = '#555'; }}
-            onMouseLeave={(e) => { if (!isActive) e.target.style.color = 'var(--text-primary)'; }}
           >
-            {item}
+            <Menu size={20} style={{ display: 'block' }} />
           </button>
-        );
-      })}
+        </div>
+      )}
+
+      {/* Nav Links Container */}
+      <div 
+        className="nav-links"
+        style={{
+          display: isMobile ? (isMobileMenuOpen ? 'flex' : 'none') : 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          gap: isMobile ? '0.5rem' : '2.5rem',
+          width: isMobile ? 'auto' : '100%',
+          alignItems: isMobile ? 'flex-end' : 'center',
+          marginTop: (isMobile && isMobileMenuOpen) ? '0.5rem' : '0'
+        }}
+      >
+        {sections.map((item) => {
+          const sectionId = item.toLowerCase();
+          const isActive = activeSection === sectionId;
+          
+          return (
+            <button
+              key={item}
+              className="nav-btn"
+              onClick={() => handleScrollTo(sectionId)}
+              style={{
+                background: isActive ? 'var(--text-primary)' : 'none',
+                color: isActive ? '#fff' : 'var(--text-primary)',
+                border: 'none',
+                fontSize: '0.95rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                padding: '0.4rem 1rem',
+                borderRadius: '20px',
+                transition: 'all 0.3s ease',
+                width: 'auto',
+                whiteSpace: 'nowrap'
+              }}
+              onMouseEnter={(e) => { if (!isActive) e.target.style.color = '#555'; }}
+              onMouseLeave={(e) => { if (!isActive) e.target.style.color = 'var(--text-primary)'; }}
+            >
+              {item}
+            </button>
+          );
+        })}
+      </div>
     </nav>
   );
 };

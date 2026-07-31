@@ -12,6 +12,14 @@ const StatsDashboard = () => {
   });
   const [loading, setLoading] = useState(true);
   const containerRef = useRef(null);
+  const scrollContainerRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Fallback data in case Apify scraping fails or is rate-limited
   const staticTopicData = [
@@ -108,6 +116,15 @@ const StatsDashboard = () => {
           }
         }
       );
+    }
+    
+    // Auto-scroll calendar to show most recent (greenest) contributions on mobile
+    if (!loading && scrollContainerRef.current) {
+      setTimeout(() => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollLeft = scrollContainerRef.current.scrollWidth;
+        }
+      }, 500); // slight delay to allow calendar to render fully
     }
   }, [loading]);
 
@@ -250,7 +267,7 @@ const StatsDashboard = () => {
             <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>GitHub Contributions</div>
           </div>
 
-          <div style={{ overflowX: 'auto', width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2.5rem' }}>
+          <div ref={scrollContainerRef} style={{ overflowX: 'auto', width: '100%', display: 'flex', justifyContent: isMobile ? 'flex-start' : 'center', marginBottom: '2.5rem', scrollBehavior: 'smooth' }}>
             <div style={{ minWidth: '700px' }}>
               <GitHubCalendar 
                 username="Bhavish2005" 

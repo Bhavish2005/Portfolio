@@ -33,7 +33,7 @@ const About = () => {
   return (
     <section ref={sectionRef} style={{ padding: '6rem 0', ...sectionGlassStyle }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '4rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', gap: '4rem' }}>
           
           {/* Education Section */}
           <div className="about-fade">

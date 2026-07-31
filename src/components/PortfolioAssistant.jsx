@@ -200,8 +200,8 @@ Guidelines:
           onClick={() => setIsOpen(true)}
           style={{
             position: 'fixed',
-            bottom: '2rem',
-            right: '2rem',
+            bottom: 'clamp(1rem, 5vw, 2rem)',
+            right: 'clamp(1rem, 5vw, 2rem)',
             zIndex: 9990,
             display: 'flex',
             alignItems: 'center',
@@ -239,8 +239,8 @@ Guidelines:
           }}
           style={{
             position: 'fixed',
-            bottom: '2rem',
-            right: '2rem',
+            bottom: 'clamp(1rem, 5vw, 2rem)',
+            right: 'clamp(1rem, 5vw, 2rem)',
             width: '90vw',
             maxWidth: '440px',
             height: '620px',

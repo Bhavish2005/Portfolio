@@ -35,14 +35,14 @@ const Home = () => {
       images.push(img);
     }
 
-    // Animation state
+    // Animation state (defaults overridden via matchMedia later)
     const animState = {
       frame: 0,
-      xOffset: window.innerWidth * 0.28, // Pushed to the right so ear touches border
+      xOffset: 0, 
       yOffset: 0,
-      scale: 1, // Base scale
+      scale: 1, 
       blur: 0,
-      opacity: 1
+      opacity: 0
     };
 
     const render = () => {
@@ -99,7 +99,20 @@ const Home = () => {
 
     images[0].onload = render;
 
-    let ctx = gsap.context(() => {
+    let mm = gsap.matchMedia();
+
+    mm.add({
+      isDesktop: "(min-width: 769px)",
+      isMobile: "(max-width: 768px)"
+    }, (context) => {
+      let { isDesktop, isMobile } = context.conditions;
+
+      // Set initial values based on device
+      animState.xOffset = isDesktop ? window.innerWidth * 0.28 : 0;
+      animState.opacity = isDesktop ? 1 : 0;
+      // Re-render immediately with the correct initial state
+      render();
+
       // 1. Scrub through frames over the entire page scroll
       gsap.to(animState, {
         frame: frameCount - 1,
@@ -113,39 +126,69 @@ const Home = () => {
         onUpdate: render
       });
 
-      // 2. Cinematic Transition out of Hero Section
-      // Moves face to center, scales it up slightly, blurs it gently, and fades it out
-      gsap.to(animState, {
-        xOffset: 0,
-        scale: 1.2,
-        blur: 8,
-        opacity: 0.25,
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=150%", // Transition happens much more gradually over 150vh
-          scrub: 1.5,    // Softer scrub interpolation
-        },
-        onUpdate: render
-      });
+      if (isMobile) {
+        // Mobile: Sequence opacity fade in, then fade out
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=150%",
+            scrub: 1.5,
+          },
+          onUpdate: render
+        });
+        
+        tl.to(animState, { opacity: 0.85, ease: "power1.inOut", duration: 1 })
+          .to(animState, { opacity: 0.25, ease: "power1.inOut", duration: 2 });
+          
+        gsap.to(animState, {
+          xOffset: 0,
+          scale: 1.2,
+          blur: 8,
+          ease: "power1.inOut",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=150%", 
+            scrub: 1.5,    
+          },
+          onUpdate: render
+        });
+      } else {
+        // 2. Cinematic Transition out of Hero Section
+        // Moves face to center, scales it up slightly, blurs it gently, and fades it out
+        gsap.to(animState, {
+          xOffset: 0,
+          scale: 1.2,
+          blur: 8,
+          opacity: 0.25,
+          ease: "power1.inOut",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=150%", // Transition happens much more gradually over 150vh
+            scrub: 1.5,    // Softer scrub interpolation
+          },
+          onUpdate: render
+        });
+      }
 
-    }, containerRef);
+    });
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       
-      // Update xOffset dynamically if they are at the top to maintain right-align
+      // Update xOffset dynamically if they are at the top to maintain alignment
       if (window.scrollY < 50) {
-        animState.xOffset = window.innerWidth * 0.28;
+        animState.xOffset = window.innerWidth > 768 ? window.innerWidth * 0.28 : 0;
       }
       render();
     };
     window.addEventListener('resize', handleResize);
 
     return () => {
-      ctx.revert();
+      mm.revert();
       window.removeEventListener('resize', handleResize);
     };
   }, []);

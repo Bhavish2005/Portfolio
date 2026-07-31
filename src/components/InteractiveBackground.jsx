@@ -55,6 +55,21 @@ export default function InteractiveBackground() {
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleMouseLeave);
 
+    const handleOrientation = (e) => {
+      if (e.gamma === null || e.beta === null) return;
+      
+      // Limit angles to sensible ranges
+      const gamma = Math.max(-90, Math.min(90, e.gamma)); 
+      // Offset beta by ~45 degrees since users hold phones tilted, not flat
+      const beta = Math.max(-90, Math.min(90, e.beta - 45)); 
+
+      // Map tilt to screen coordinates
+      mouse.targetX = (width / 2) + (gamma / 45) * (width / 2);
+      mouse.targetY = (height / 2) + (beta / 45) * (height / 2);
+      mouse.active = true;
+    };
+    window.addEventListener('deviceorientation', handleOrientation, true);
+
     // Floating 3D wireframe cube objects definition
     const cubes = [
       { x: width * 0.12, y: height * 0.22, size: 28, rotX: 0.2, rotY: 0.4, rotZ: 0.1, speedX: 0.005, speedY: 0.007 },
@@ -266,6 +281,7 @@ export default function InteractiveBackground() {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('deviceorientation', handleOrientation, true);
     };
   }, []);
 

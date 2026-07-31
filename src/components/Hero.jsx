@@ -101,7 +101,7 @@ const Hero = () => {
           color: 'var(--text-primary)',
           opacity: 0.03, 
           whiteSpace: 'pre-wrap', // Allows text to wrap to the next line
-          width: '550px', // Restricts it to match the left section width
+          width: 'min(550px, 90vw)', // Restricts it to match the left section width but prevents horizontal overflow
           textAlign: 'center', // Centered within the left section
           lineHeight: '1.1',
           zIndex: -2,

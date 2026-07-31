@@ -130,6 +130,7 @@ export default function ResumeShowcase() {
               return (
                 <button
                   key={res.id}
+                  className={`resume-tab ${isActive ? 'active' : ''}`}
                   ref={(el) => (tabRefs.current[idx] = el)}
                   onClick={() => setActiveSlide(idx)}
                   style={{

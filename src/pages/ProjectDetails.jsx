@@ -44,18 +44,21 @@ export default function ProjectDetails() {
   if (!project) return <div style={{ paddingTop: '150px', textAlign: 'center', fontSize: '2rem' }}>Project not found</div>;
 
   return (
-    <div style={{ paddingTop: '120px', minHeight: '100vh', maxWidth: '1200px', margin: '0 auto', paddingBottom: '6rem', paddingLeft: '2rem', paddingRight: '2rem' }}>
+    <div style={{ paddingTop: '120px', minHeight: '100vh', maxWidth: '1200px', margin: '0 auto', paddingBottom: '6rem', paddingLeft: 'clamp(1rem, 5vw, 2rem)', paddingRight: 'clamp(1rem, 5vw, 2rem)' }}>
       
       {/* Header Section */}
       <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-        <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)', textDecoration: 'none', marginBottom: '3rem', fontWeight: 600, fontSize: '1.1rem' }}>
-          <ArrowLeft size={20} /> Back to Portfolio
+        <Link to="/" className="back-btn" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-muted)', textDecoration: 'none', marginBottom: '3rem', fontWeight: 600, fontSize: '1.1rem' }}>
+          <span className="back-arrow-circle" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '36px', height: '36px', borderRadius: '50%', background: 'var(--surface)', border: '1px solid var(--border-light)', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+            <ArrowLeft size={18} className="back-arrow-icon" />
+          </span>
+          Back to Portfolio
         </Link>
         
-        <h1 style={{ fontSize: '4.5rem', color: 'var(--text-primary)', marginBottom: '1rem', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+        <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', color: 'var(--text-primary)', marginBottom: '1rem', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
           {project.title}
         </h1>
-        <h2 style={{ fontSize: '1.8rem', color: 'var(--text-secondary)', marginBottom: '2.5rem', fontWeight: 400 }}>
+        <h2 style={{ fontSize: 'clamp(1.2rem, 5vw, 1.8rem)', color: 'var(--text-secondary)', marginBottom: '2.5rem', fontWeight: 400 }}>
           {project.subtitle}
         </h2>
 
@@ -85,7 +88,7 @@ export default function ProjectDetails() {
       </div>
 
       {/* Main Content Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '4rem', maxWidth: '1000px', margin: '0 auto', marginBottom: '4rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', gap: '4rem', maxWidth: '1000px', margin: '0 auto', marginBottom: '4rem' }}>
         
         {/* The Problem / Need */}
         <div style={{ gridColumn: '1 / -1' }}>
@@ -197,7 +200,7 @@ export default function ProjectDetails() {
 
       {/* Full GitHub README Integration */}
       {project.githubLink && (
-        <div style={{ maxWidth: '1000px', margin: '6rem auto', padding: '4rem', background: 'var(--surface)', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: '0 10px 40px rgba(0,0,0,0.03)' }}>
+        <div style={{ maxWidth: '1000px', margin: '6rem auto', padding: 'clamp(1.5rem, 5vw, 4rem)', background: 'var(--surface)', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: '0 10px 40px rgba(0,0,0,0.03)' }}>
           <h3 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '3rem', borderBottom: '1px solid var(--border-light)', paddingBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <FiGithub size={28} /> Live GitHub README
           </h3>

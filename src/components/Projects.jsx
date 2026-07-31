@@ -49,6 +49,7 @@ const Projects = () => {
           {projectsData.map((project, index) => (
             <div 
               key={project.id} 
+              className="project-sticky-wrapper"
               style={{ 
                 position: 'sticky',
                 top: `calc(100px + ${index * 30}px)`, 

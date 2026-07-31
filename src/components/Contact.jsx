@@ -179,7 +179,7 @@ const Contact = () => {
             <FiGithub size={20} /> GitHub
           </a>
           <a href="https://leetcode.com/u/Bhavish_2005/" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500, fontSize: '1.1rem', transition: 'color 0.2s' }} onMouseEnter={(e)=>e.target.style.color='#000000'} onMouseLeave={(e)=>e.target.style.color='var(--text-secondary)'}>
-            <SiLeetcode size={20} color="#ffa116" /> LeetCode
+            <SiLeetcode size={20} style={{ color: 'var(--text-primary)' }} /> LeetCode
           </a>
           <a href="https://linkedin.com/in/bhavish-pushkarna-52715429a" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500, fontSize: '1.1rem', transition: 'color 0.2s' }} onMouseEnter={(e)=>e.target.style.color='var(--text-primary)'} onMouseLeave={(e)=>e.target.style.color='var(--text-secondary)'}>
             <FiLinkedin size={20} /> LinkedIn

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -96,15 +96,15 @@ const Navbar = () => {
       transform: isMobile ? `translate(0, ${isVisible ? '0' : '-150%'})` : `translate(-50%, ${isVisible ? '0' : '-150%'})`,
       opacity: isVisible ? 1 : 0,
       pointerEvents: isVisible ? 'auto' : 'none',
-      transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, left 0.4s ease',
+      transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, left 0.4s ease, background 0.3s, backdrop-filter 0.3s, border 0.3s, box-shadow 0.3s',
       zIndex: 9999,
-      background: 'rgba(255, 255, 255, 0.7)',
-      backdropFilter: 'blur(12px)',
-      WebkitBackdropFilter: 'blur(12px)',
-      padding: '0.75rem 2rem',
+      background: (isMobile && isMobileMenuOpen) ? 'transparent' : (isMobile ? 'transparent' : 'rgba(255, 255, 255, 0.7)'),
+      backdropFilter: (isMobile && isMobileMenuOpen) ? 'none' : 'blur(12px)',
+      WebkitBackdropFilter: (isMobile && isMobileMenuOpen) ? 'none' : 'blur(12px)',
+      padding: (isMobile && isMobileMenuOpen) ? '0' : '0.75rem 2rem',
       borderRadius: '50px',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-      border: '1px solid rgba(0, 0, 0, 0.05)',
+      boxShadow: (isMobile && isMobileMenuOpen) ? 'none' : '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+      border: (isMobile && isMobileMenuOpen) ? 'none' : '1px solid rgba(0, 0, 0, 0.05)',
       display: 'flex',
       flexDirection: 'column',
       gap: '0',

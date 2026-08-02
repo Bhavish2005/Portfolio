@@ -37,17 +37,23 @@ const vercelApiMock = () => {
             }
 
             // 2. TOKEN FETCH
-            const envPath = path.resolve('.env.example');
             let apifyToken = null;
-            if (fs.existsSync(envPath)) {
-              const envContent = fs.readFileSync(envPath, 'utf-8');
-              const tokenMatch = envContent.match(/APIFY_TOKEN=(.+)/);
-              if (tokenMatch) apifyToken = tokenMatch[1].trim();
+            const envPaths = [path.resolve('.env'), path.resolve('.env.example')];
+            
+            for (const envPath of envPaths) {
+              if (fs.existsSync(envPath)) {
+                const envContent = fs.readFileSync(envPath, 'utf-8');
+                const tokenMatch = envContent.match(/APIFY_TOKEN=(.+)/);
+                if (tokenMatch) {
+                  apifyToken = tokenMatch[1].trim();
+                  break;
+                }
+              }
             }
 
             if (!apifyToken) {
               res.statusCode = 500;
-              return res.end(JSON.stringify({ error: 'Token not found in .env.example' }));
+              return res.end(JSON.stringify({ error: 'Token not found in .env or .env.example' }));
             }
 
             console.log("[Vite API Mock] Cache missed/expired. Fetching 3 endpoints from Apify concurrently...");

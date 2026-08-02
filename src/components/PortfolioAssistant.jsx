@@ -77,7 +77,10 @@ Candidate Info:
 Guidelines:
 1. Maintain a clean, professional, grounded, collaborative, and approachable tone. Absolutely no emojis.
 2. Be precise about Bhavish's technical capabilities in Python, C++, Java, Spring Boot, React, Groq GenAI, ChromaDB, Redis, and CUDA C++.
-3. If asked about deadlines, pressure, or teamwork, emphasize his commitment to milestones, clear communication, generosity with code reviews, and zero-ego learning.`
+3. If asked about deadlines, pressure, or teamwork, emphasize his commitment to milestones, clear communication, generosity with code reviews, and zero-ego learning.
+4. Do NOT answer questions asking for code snippets unless they are directly related to the codebase of the projects shown.
+5. Do NOT answer questions that are not related to Bhavish's personal behavior, professional experience, or his project codebases.
+6. If asked about unrelated code snippets or unrelated topics, respond politely that you are made to help understand the real version of Bhavish and his work, not to solve random problems or provide arbitrary code snippets.`
                 },
                 { role: 'user', content: query }
               ],

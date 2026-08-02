@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FiGithub, FiLinkedin, FiMail, FiSend } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiSend, FiInstagram } from 'react-icons/fi';
 import { SiLeetcode } from 'react-icons/si';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,26 +38,52 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate a network request for the premium feel
-    setTimeout(() => {
+    try {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      
+      if (!accessKey) {
+        console.error("Web3Forms Access Key is missing!");
+        alert("Configuration Error: Web3Forms Access Key is missing. Please add it to your .env file.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setSubmitted(true);
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({ name: '', email: '', message: '' });
+        }, 3000);
+      } else {
+        console.error("Form submission failed", result);
+        alert("Something went wrong! Please try again later.");
+      }
+    } catch (error) {
+      console.error("Form submission error", error);
+      alert("Something went wrong! Please try again later.");
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-      
-      // Native mailto fallback since there's no backend configured yet.
-      // You can easily replace this with Formspree or Web3Forms by changing the <form action="...">
-      const mailtoLink = `mailto:bhavish2005@example.com?subject=Portfolio Inquiry from ${formData.name}&body=${encodeURIComponent(formData.message + "\n\nFrom: " + formData.email)}`;
-      window.location.href = mailtoLink;
-      
-      // Reset form after a few seconds
-      setTimeout(() => {
-        setSubmitted(false);
-        setFormData({ name: '', email: '', message: '' });
-      }, 3000);
-    }, 1500);
+    }
   };
 
   const inputStyle = {
@@ -175,6 +201,9 @@ const Contact = () => {
         
         {/* Contact Links */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginTop: '4rem', flexWrap: 'wrap' }}>
+          <a href="https://instagram.com/pushkarnabhavish" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500, fontSize: '1.1rem', transition: 'color 0.2s' }} onMouseEnter={(e)=>e.target.style.color='var(--text-primary)'} onMouseLeave={(e)=>e.target.style.color='var(--text-secondary)'}>
+            <FiInstagram size={20} /> Instagram
+          </a>
           <a href="https://github.com/Bhavish2005" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', fontWeight: 500, fontSize: '1.1rem', transition: 'color 0.2s' }} onMouseEnter={(e)=>e.target.style.color='var(--text-primary)'} onMouseLeave={(e)=>e.target.style.color='var(--text-secondary)'}>
             <FiGithub size={20} /> GitHub
           </a>

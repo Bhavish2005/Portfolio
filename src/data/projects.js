@@ -55,11 +55,13 @@ import fin9 from '../assets/FinanceVue/Screenshot 2026-07-30 183046.png';
 import fin10 from '../assets/FinanceVue/Screenshot 2026-07-30 183057.png';
 
 // FixMate Assets
-import fixCover from '../assets/fixmate/ide1.png';
+
+import fixCover from '../assets/fixmate/Screenshot 2026-07-30 182456.png' ;
 import fix1 from '../assets/fixmate/dashboard.png';
-import fix2 from '../assets/fixmate/login.png';
+import fix2 from '../assets/fixmate/ide1.png';
+import fix4 from '../assets/fixmate/login.png';
 import fix3 from '../assets/fixmate/signup.png';
-import fix4 from '../assets/fixmate/Screenshot 2026-07-30 182456.png';
+
 
 
 export const projectsData = [
@@ -199,7 +201,7 @@ export const projectsData = [
     tools: ['React', 'Node.js', 'Express', 'MongoDB', 'Socket.io', 'Stream'],
     year: 'Aug - Nov 2025',
     githubLink: 'https://github.com/Bhavish2005/fixmate-cc-ide',
-    liveLink: 'https://fixmate-ide.vercel.app', 
+    liveLink: 'https://fixmate.qzz.io/', 
     problemStatement: 'Remote pair programming or technical interviews often force developers to juggle Zoom, VS Code, and Slack. I built FixMate to eliminate this context switching by combining a real-time collaborative execution environment, live video chat, and a context-aware AI debugger into one seamless platform.',
     architectureDeepDive: 'FixMate operates on a Node.js/Express backend that orchestrates real-time events via Socket.io. To support seamless collaborative coding, I engineered an Operational Transformation (OT) layer. When two users type simultaneously, the OT layer resolves the conflicts by tracking the exact index of insertions/deletions and transforming them before broadcasting the state to the room. The video and text chat panels are integrated directly into the workspace using the Stream.io React SDK, utilizing WebRTC for ultra-low latency peer-to-peer communication.',
     challengesOvercome: 'Building the in-browser code execution was particularly difficult due to security concerns. If users can run arbitrary code, they could potentially execute malicious scripts on the server. I overcame this by integrating the Piston API, which executes the users\' code in highly isolated, ephemeral Docker containers. This ensures that any infinite loops, memory leaks, or malicious system calls are safely contained and destroyed after execution, keeping the FixMate platform completely secure.',

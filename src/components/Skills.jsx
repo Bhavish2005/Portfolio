@@ -5,8 +5,8 @@ const Skills = () => {
   const row1Ref = useRef(null);
   const row2Ref = useRef(null);
 
-  const skillsRow1 = ["C/C++", "CUDA", "Python", "Java", "JavaScript", "SQL", "C/C++", "CUDA", "GO", "Java", "Spring Boot ", "SQL"];
-  const skillsRow2 = ["LangGraph", "Llama 3.1", "PostgreSQL", "React", "Docker", "AWS", "LangGraph", "Llama 3.1", "PostgreSQL", "React", "Docker", "AWS"];
+  const skillsRow1 = ["C/C++", "CUDA", "Python", "Java", "JavaScript","Spring Boot", "SQL", "C/C++", "CUDA", "GO", "Java", "Spring Boot", "SQL"];
+  const skillsRow2 = ["LangGraph","PostgreSQL", "React", "Docker", "AWS", "LangGraph","PostgreSQL", "React", "Docker", "AWS"];
 
   useEffect(() => {
     let ctx = gsap.context(() => {

@@ -209,6 +209,7 @@ export default function PortfolioTracker() {
     >
       {isExpanded && (
         <div
+          className="custom-transparent-scrollbar portfolio-tracker-popup"
           data-lenis-prevent="true"
           onWheel={(e) => e.stopPropagation()}
           style={{
@@ -225,7 +226,6 @@ export default function PortfolioTracker() {
             transformOrigin: 'bottom left',
             animation: 'trackerPopup 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
           }}
-          className="custom-transparent-scrollbar"
         >
           <style>{`
             @keyframes trackerPopup {
@@ -234,6 +234,13 @@ export default function PortfolioTracker() {
             }
             .custom-transparent-scrollbar::-webkit-scrollbar { display: none; }
             .custom-transparent-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+            
+            @media (max-width: 600px) {
+              .portfolio-tracker-popup {
+                width: calc(100vw - 2rem) !important;
+                max-height: 75vh !important;
+              }
+            }
           `}</style>
           
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>

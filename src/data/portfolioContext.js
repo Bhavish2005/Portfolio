@@ -13,7 +13,7 @@ export const candidateProfile = {
       subtitle: "Generative AI, LangGraph, Spring Boot, React, ChromaDB & Redis",
       focus: "AI Engineering, Full-Stack Development, and Intelligent Backend Architecture",
       description: "Highlights expertise in multi-agent LLM orchestration (LangGraph, Groq), semantic vector caching, Spring Boot REST APIs, microservices, and modern React architectures.",
-      link: "https://drive.google.com/file/d/1epu2dPL4Y8ELawRnmNu8fmCvMWC-eadW/view?usp=sharing",
+      link: "https://drive.google.com/file/d/1im-k5n8BmaOIz_OHH1oBQRkLNuT-RT98/view?usp=sharing",
       tags: ["GenAI", "LangGraph", "Spring Boot", "React", "ChromaDB", "PostgreSQL"],
     },
     {
@@ -22,7 +22,7 @@ export const candidateProfile = {
       subtitle: "CUDA C++, GPU Acceleration, Parallel Computing, OpenGL & BVH Traversal",
       focus: "Core Systems Engineering, High-Performance Computing (HPC), GPU Software & Graphics Programming",
       description: "Focuses on low-level memory optimization, CUDA parallelism, BVH spatial partitioning algorithms, multi-threaded performance engineering, and C++ system design.",
-      link: "https://drive.google.com/file/d/1lYBD7y3B6TL3GSYlk2bNBvVrA4kUfyr5/view?usp=sharing",
+      link: "https://drive.google.com/file/d/1Fn-jWUVr5pMFc_HQSEWkq87uYkA4-j8R/view?usp=sharing",
       tags: ["C++", "CUDA", "OpenGL", "Parallel Computing", "BVH", "HPC"],
     }
   ],

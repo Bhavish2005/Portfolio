@@ -201,6 +201,16 @@ Guidelines:
         .custom-transparent-scrollbar::-webkit-scrollbar-thumb:hover {
           background: rgba(0, 0, 0, 0.25);
         }
+
+        @media (max-width: 600px) {
+          .portfolio-assistant-drawer {
+            width: calc(100vw - 2rem) !important;
+            right: 1rem !important;
+            bottom: 1rem !important;
+            max-height: 85vh !important;
+            height: 600px !important;
+          }
+        }
       `}</style>
 
       {/* Floating Trigger Pill Opener with Sparkles icon in front of LEO */}
@@ -246,6 +256,7 @@ Guidelines:
       {/* Assistant Drawer Panel */}
       {isOpen && (
         <div
+          className="portfolio-assistant-drawer"
           onWheel={(e) => {
             e.stopPropagation();
           }}

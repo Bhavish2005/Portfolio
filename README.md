@@ -6,7 +6,10 @@ The application utilizes cinematic GSAP scroll animations, real-time background 
 
 ## ✨ Features
 
-- **Cinematic Scroll Animations:** Built with GSAP ScrollTrigger, featuring a massive, buttery-smooth background face transition that natively scales and tracks scrolling over the DOM.
+- **LEO - AI Portfolio Assistant:** An integrated RAG (Retrieval-Augmented Generation) AI Assistant powered by Groq and Llama 3.1, ready to answer questions about Bhavish's technical skills, work ethic, and architecture decisions.
+- **JD Compatibility Analyzer:** Paste a Job Description to instantly calculate a compatibility match score based on technical stack and project relevance.
+- **Interactive Journey Tracker:** A sleek, gamified timeline tracker that persists progress across page loads, awarding users with a cinematic GSAP confetti burst upon 100% completion of the portfolio.
+- **Cinematic Scroll Animations:** Built with GSAP ScrollTrigger, featuring massive, buttery-smooth background face transitions that natively scale and track scrolling.
 - **Dynamic Project Case Studies:** Uses `react-router-dom` and `react-markdown` to dynamically fetch and beautifully render live `README.md` files directly from GitHub repositories.
 - **Live LeetCode & GitHub Metrics:** Integrates directly with the LeetCode GraphQL API and GitHub REST API to pull live contest ratings and contribution graphs.
 - **Ultra-Premium UI:** Custom glassmorphism, responsive canvas scaling, dynamic typography, and completely smooth CSS transitions.

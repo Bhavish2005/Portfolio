@@ -263,6 +263,7 @@ export default function ResumeShowcase() {
                         href={resume.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => window.dispatchEvent(new CustomEvent('portfolio:clickResume'))}
                         style={{
                           width: '100%',
                           display: 'inline-flex',

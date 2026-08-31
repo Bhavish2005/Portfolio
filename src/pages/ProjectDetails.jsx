@@ -4,8 +4,12 @@ import { ArrowLeft, CheckCircle2, Star, ExternalLink, Code2, AlertTriangle, Laye
 import { FiGithub } from 'react-icons/fi';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { projectsData } from '../data/projects';
 import ImageCarousel from '../components/ImageCarousel';
+
+gsap.registerPlugin(ScrollToPlugin);
 
 export default function ProjectDetails() {
   const { id } = useParams();
@@ -15,10 +19,17 @@ export default function ProjectDetails() {
   const [loadingReadme, setLoadingReadme] = useState(true);
 
   useEffect(() => {
-    requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    });
-    setTimeout(() => window.scrollTo(0, 0), 10);
+    // Initial jump to top
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    
+    // Scroll down to 'The Need' section smoothly
+    setTimeout(() => {
+      gsap.to(window, { duration: 0.8, scrollTo: { y: '#the-need', offsetY: 120 }, ease: 'power3.out' });
+    }, 150);
+
+    if (project) {
+      window.dispatchEvent(new CustomEvent('portfolio:viewProject', { detail: { projectId: id } }));
+    }
     
     if (project && project.githubLink) {
       setLoadingReadme(true);
@@ -91,7 +102,7 @@ export default function ProjectDetails() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', gap: '4rem', maxWidth: '1000px', margin: '0 auto', marginBottom: '4rem' }}>
         
         {/* The Problem / Need */}
-        <div style={{ gridColumn: '1 / -1' }}>
+        <div id="the-need" style={{ gridColumn: '1 / -1' }}>
           <h3 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1.5rem', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <AlertTriangle color="var(--text-primary)" size={28} /> The Need
           </h3>

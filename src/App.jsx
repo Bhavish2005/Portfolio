@@ -9,6 +9,8 @@ import InteractiveBackground from './components/InteractiveBackground';
 import Home from './pages/Home';
 import ProjectDetails from './pages/ProjectDetails';
 
+import PortfolioTracker from './components/PortfolioTracker';
+
 // Register GSAP plugins globally
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,6 +59,9 @@ function App() {
           <Route path="/project/:id" element={<ProjectDetails />} />
         </Routes>
         
+        {/* Global Portfolio Tracker */}
+        <PortfolioTracker />
+
         {/* Footer */}
         <footer style={{ textAlign: 'center', padding: '4rem 2rem', color: 'var(--text-muted)', borderTop: '1px solid var(--border-light)' }}>
           <p>© 2026 Bhavish Pushkarna. Designed & Engineered with precision.</p>

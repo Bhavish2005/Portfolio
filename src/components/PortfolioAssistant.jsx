@@ -206,7 +206,10 @@ Guidelines:
       {/* Floating Trigger Pill Opener with Sparkles icon in front of LEO */}
       {!isOpen && (
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true);
+            window.dispatchEvent(new CustomEvent('portfolio:interactLeo'));
+          }}
           style={{
             position: 'fixed',
             bottom: 'clamp(1rem, 5vw, 2rem)',
@@ -316,10 +319,10 @@ Guidelines:
                   justify: 'center',
                   padding: 0,
                   flexShrink: 0,
-                  transition: 'background 0.2s ease, color 0.2s ease',
+                  transition: 'color 0.2s ease',
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--border-light)'; e.currentTarget.style.color = 'var(--text-primary)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-muted)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--text-primary)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)'; }}
                 title="Clear Conversation"
               >
                 <Trash2 size={15} style={{ display: 'block', margin: 0 }} />
@@ -332,17 +335,17 @@ Guidelines:
                   borderRadius: '50%',
                   background: 'transparent',
                   border: 'none',
-                  color: 'var(--text-primary)',
+                  color: 'var(--text-muted)',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justify: 'center',
                   padding: 0,
                   flexShrink: 0,
-                  transition: 'background 0.2s ease',
+                  transition: 'color 0.2s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--border-light)')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
                 title="Close Drawer"
               >
                 <X size={18} style={{ display: 'block', margin: 0 }} />
